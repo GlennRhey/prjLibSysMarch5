@@ -5,8 +5,6 @@
 *.dll
 *.exe
 *.pdb
-*.xml
-*.config
 bin/
 obj/
 packages/
@@ -17,6 +15,12 @@ packages/
 *.pidb
 *.svclog
 *.scc
+
+# Allow essential config files
+!Web.config
+!packages.config
+!Web.Debug.config
+!Web.Release.config
 
 # Windows specific
 Thumbs.db
