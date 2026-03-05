@@ -45,7 +45,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- Sidebar -->
-                <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <nav class="col-md-3 col-lg-2 d-md-block sidebar">
                     <div class="position-sticky pt-3">
                         <div class="text-center mb-4">
                             <div class="library-icon">
