@@ -1,0 +1,89 @@
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Web.UI;
+using prjLibrarySystem.Models;
+
+namespace prjLibrarySystem
+{
+    public partial class Login : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["UserRole"] != null && Session["UserID"] != null)
+            {
+                Response.Redirect(Session["UserRole"].ToString() == "Admin"
+                    ? "WebForm1.aspx" : "StudentDashboard.aspx");
+            }
+        }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            // txtUsername on the form accepts UserID (e.g. EMP-001 or 2023-0001)
+            string userId = txtUsername.Text.Trim();
+            string password = txtPassword.Text.Trim();
+            string role = hfSelectedRole.Value;
+
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(password))
+            {
+                ShowError("Please enter both User ID and password.");
+                return;
+            }
+
+            try
+            {
+                // Uses DatabaseHelper.AuthenticateUser which queries tblUsers
+                User user = DatabaseHelper.AuthenticateUser(userId, password);
+
+                if (user == null)
+                {
+                    ShowError("Invalid User ID or password, or account is inactive.");
+                    return;
+                }
+
+                if (user.Role != role)
+                {
+                    ShowError($"Wrong role selected. This account is registered as '{user.Role}'.");
+                    return;
+                }
+
+                // Session — Username kept as alias of UserID for page compatibility
+                Session["UserID"] = user.UserID;
+                Session["Username"] = user.UserID;
+                Session["UserRole"] = user.Role;
+                Session["Email"] = user.Email;
+                Session["LoginTime"] = DateTime.Now;
+
+                if (user.Role == "Admin")
+                {
+                    // Admins store FullName in tblUsers
+                    Session["FullName"] = user.FullName;
+                    Response.Redirect("WebForm1.aspx");
+                }
+                else
+                {
+                    // Students store FullName in tblMembers
+                    DataTable memberDt = DatabaseHelper.ExecuteQuery(
+                        "SELECT FullName FROM tblMembers WHERE UserID = @UserID",
+                        new SqlParameter[] { new SqlParameter("@UserID", userId) });
+
+                    Session["FullName"] = memberDt.Rows.Count > 0
+                        ? memberDt.Rows[0]["FullName"].ToString()
+                        : userId;
+
+                    Response.Redirect("StudentDashboard.aspx");
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError("Login failed: " + ex.Message);
+            }
+        }
+
+        private void ShowError(string message)
+        {
+            lblError.Text = message;
+            divError.Visible = true;
+        }
+    }
+}
