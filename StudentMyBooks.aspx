@@ -45,7 +45,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- Sidebar -->
-                <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+                <nav class="col-12 col-md-3 col-lg-2 d-block sidebar">
                     <div class="position-sticky pt-3">
                         <div class="text-center mb-4">
                             <div class="library-icon">
@@ -82,7 +82,7 @@
                 </nav>
 
                 <!-- Main Content -->
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <main class="col-12 col-md-9 col-lg-10 px-md-4 main-content">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">My Borrowed Books</h1>
                         <div class="btn-toolbar mb-2 mb-md-0">

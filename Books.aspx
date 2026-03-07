@@ -131,7 +131,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="container-fluid">
             <div class="row">
-                <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <nav class="col-12 col-md-3 col-lg-2 d-block sidebar">
                     <div class="position-sticky pt-3">
                         <h4 class="text-white text-center mb-4">Library System</h4>
                         <ul class="nav flex-column">
@@ -160,11 +160,16 @@
                                     <i class="fas fa-chart-bar me-2"></i> Reports
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Logout.aspx">
+                                    <i class="fas fa-sign-out-alt me-2"></i> Logout
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
 
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <main class="col-12 col-md-9 col-lg-10 px-md-4 main-content">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">Book Management</h1>
                         <div class="btn-toolbar mb-2 mb-md-0">

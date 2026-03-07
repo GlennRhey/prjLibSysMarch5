@@ -65,9 +65,11 @@
         .logo-container {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
             margin-bottom: 20px;
-            gap: 20px; /* space between logo and book */
+            gap: 5px; /* move book icon much closer to ama-logo */
+            position: relative;
+            left: -8px; /* move both logos a bit more to the left */
         }
 
         .logo-container .library-icon {
@@ -95,6 +97,20 @@
             background: white;
             color: #8b0000;
             transform: translateY(-2px);
+        }
+
+        /* Fix checkbox double box issue */
+        .form-check-input {
+            border: none !important;
+            background-image: none !important;
+            background-color: white !important;
+            margin-right: 0.05em !important;
+            vertical-align: middle !important;
+        }
+        
+        .form-check-label {
+            margin-left: -0.35em !important;
+            vertical-align: middle !important;
         }
 
         .role-btn.active {
@@ -132,7 +148,7 @@
 
                     <!-- Logo + Book Icon Side by Side -->
                     <div class="logo-container">
-                        <img src="images/ama-logo.png" alt="AMA Computer College Logo" class="ama-logo">
+                        <img src="images/ama-logo.png?v=2" alt="AMA Computer College Logo" class="ama-logo">
                         <div class="library-icon">
                             <i class="fas fa-book-open"></i>
                         </div>
@@ -201,9 +217,7 @@
                     
                     <div class="text-center mt-3">
                         <small class="text-muted">
-                            Demo Credentials:<br>
-                            Student: student / 123456<br>
-                            Admin: admin / admin123
+                            &copy; 2026 AMA Library Management System
                         </small>
                     </div>
                 </div>
